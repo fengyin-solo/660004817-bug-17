@@ -6,9 +6,9 @@
     </header>
     <main class="app-main">
       <ControlPanel @sample="handleSample" />
-      <div class="main-grid" v-if="store.result">
+      <div class="main-grid" :class="{ single: !store.result }">
         <div class="plot-area"><RamachandranPlot /></div>
-        <div class="viewer-area"><ProteinViewer3D /></div>
+        <div class="viewer-area" v-if="store.result"><ProteinViewer3D /></div>
       </div>
       <ConformationTable v-if="store.result" />
     </main>
@@ -36,4 +36,5 @@ body{font-family:system-ui,sans-serif;background:#f0f2f5}
 .subtitle{opacity:.85;margin-top:4px;font-size:.9rem}
 .app-main{padding:20px 40px}
 .main-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.main-grid.single{grid-template-columns:1fr}
 </style>
